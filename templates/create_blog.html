@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>
+    Create Blog
+</title>
+</head>
+<body>
+<form>
+    <label>Title:</label>
+    <input id="title" type="text" name="title" required>
+    <br>
+    <label>Content:</label>
+    <textarea id="content" name="content" required></textarea>
+    <br>
+    <label>Publish:</label>
+    <input id="publish" type="checkbox" name="publish">
+    <input type="submit" value="Create">
+</form>
+<script>
+    function createBlog() {
+        var title = document.getElementById('title').value;
+        var content = document.getElementById('content').value;
+        var publish = document.getElementById('publish').checked;
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+    
+            "title": title,
+            "content": content,
+            "publish": publish
+        }); 
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+        fetch("http://localhost:8000/api/blogs_add", requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+    };
+</script>
+</body>
+</html>

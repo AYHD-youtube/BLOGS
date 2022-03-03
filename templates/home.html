@@ -1,0 +1,16 @@
+{% comment %} html to diplay all {{blogs}} {% endcomment %}
+<html>
+<head>
+<title>Blogs</title>
+</head>
+<body>
+    {% comment %} login/register button link {% endcomment %}
+    <a href="/login_or_register">Login/Register</a>
+<h1>Blogs</h1>
+<ul>
+{% for blog in blogs %}
+<li>{{blog.title}} - {{blog.content}}</li>
+{% endfor %}
+</ul>
+</body>
+</html>
